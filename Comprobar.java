@@ -44,6 +44,26 @@ public class Comprobar {
         return valido;
         }
 
+        // Método para comprobar el correo electrónico
+public static boolean compruebaEmail(String email) {
+    boolean valido = false;
+    
+    // Comprobar que el correo electrónico contiene un @ y acaba en .com, .es o .cat
+    if (email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.(com|es|cat)$")) {
+        // Comprobar que el dominio está permitido
+        if (email.contains("@paucasesnovescifp") || email.contains("@yahoo") || email.contains("@gmail")
+            || email.contains("@hotmail")) {
+            valido = true;
+        } else {
+            System.out.println("El dominio del correo electrónico no está permitido");
+        }
+    } else {
+        System.out.println("El correo electrónico no es válido");
+    }
+    
+    return valido;
+}
+
         // Método para generar un código de seguridad aleatorio
         public static String generaCodigoSeguridad() {
         String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#-";
