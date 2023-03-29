@@ -4,54 +4,81 @@ import java.util.Scanner;
 public class Comprobar {
 
 
-    // Método para comprobar la contraseña
-    public static boolean compruebaPassword(String password) {
-    boolean valido = false;
+        // Base de datos de nombres de usuarios
+        private static final String[] nombresUsuarios = {"Carles_345", "AnaGomez-783", "Pepito_999", "Laura_222",
+        "Juanito-111", "Marta_444", "Pedro_777", "Sofia-666", "David_555", "Lucia888"};
 
-    // Comprobar que la contraseña cumple las restricciones
-    if (password.matches("^[A-Z][a-zA-Z0-9_#@-]{6}[0-9]{2}$")) {
-    valido = true;
-    } else {
-    System.out.println("La contraseña no cumple las restricciones");
-    }
+        // Método para comprobar el nombre de usuario
+        public static boolean compruebaNombre(String nombre) {
+        boolean valido = false;
 
-    return valido;
-    }
+        // Comprobar que el nombre cumple las restricciones
+        if (nombre.matches("^[A-Z][a-z]+[-][0-9]{3}$") && nombre.length() <= 16) {
+        // Comprobar que el nombre no está en la base de datos
+        for (String n : nombresUsuarios) {
+            if (n.equalsIgnoreCase(nombre)) {
+                System.out.println("El nombre de usuario ya existe");
+                return false;
+            }
+        }
+        valido = true;
+        } else {
+        System.out.println("El nombre de usuario no cumple las restricciones");
+        }
 
-    // Método para generar un código de seguridad aleatorio
-    public static String generaCodigoSeguridad() {
-    String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#-";
-    Random rnd = new Random();
-    StringBuilder sb = new StringBuilder(8);
-
-    for (int i = 0; i < 8; i++) {
-    sb.append(caracteres.charAt(rnd.nextInt(caracteres.length())));
-    }
-
-    System.out.println("El código de seguridad generado es: " + sb.toString());
-
-    return sb.toString();
-    }
-
-    // Método para comprobar el código de seguridads
-    public static boolean compruebaCodigoSeguridad(String codigo) {
-    Scanner scanner = new Scanner(System.in);
-    boolean valido = false;
-
-    // Comprobar que el código introducido coincide con el generado
-    System.out.println("Introduce el código de seguridad generado:");
-    String codigoIntroducido = scanner.nextLine();
-    if (codigoIntroducido.equals(codigo)) {
-    valido = true;
-    System.out.println("El codigo  es correcto");
-    return valido;
-
-    }
-    else{
-        System.out.println("El codigo no es correcto");
         return valido;
-    }
+        }
+    
+    
+    
+        // Método para comprobar la contraseña
+        public static boolean compruebaPassword(String password) {
+        boolean valido = false;
 
-}
+        // Comprobar que la contraseña cumple las restricciones
+        if (password.matches("^[A-Z][a-zA-Z0-9_#@-]{6}[0-9]{2}$")) {
+        valido = true;
+        } else {
+        System.out.println("La contraseña no cumple las restricciones");
+        }
+
+        return valido;
+        }
+
+        // Método para generar un código de seguridad aleatorio
+        public static String generaCodigoSeguridad() {
+        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#-";
+        Random rnd = new Random();
+        StringBuilder sb = new StringBuilder(8);
+
+        for (int i = 0; i < 8; i++) {
+        sb.append(caracteres.charAt(rnd.nextInt(caracteres.length())));
+        }
+
+        System.out.println("El código de seguridad generado es: " + sb.toString());
+
+        return sb.toString();
+        }
+
+        // Método para comprobar el código de seguridads
+        public static boolean compruebaCodigoSeguridad(String codigo) {
+        Scanner scanner = new Scanner(System.in);
+        boolean valido = false;
+
+        // Comprobar que el código introducido coincide con el generado
+        System.out.println("Introduce el código de seguridad generado:");
+        String codigoIntroducido = scanner.nextLine();
+        if (codigoIntroducido.equals(codigo)) {
+        valido = true;
+        System.out.println("El codigo  es correcto");
+        return valido;
+
+        }
+        else{
+            System.out.println("El codigo no es correcto");
+            return valido;
+        }
+
+    }
 }
 
