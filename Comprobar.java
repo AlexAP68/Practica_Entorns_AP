@@ -2,10 +2,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Comprobar {
-
-
-        
-    
     
         // Método para comprobar la contraseña
         public static boolean compruebaPassword(String password) {
